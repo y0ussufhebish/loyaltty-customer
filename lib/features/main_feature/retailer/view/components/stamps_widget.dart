@@ -18,6 +18,13 @@ class StampsWidget extends StatelessWidget {
       builder: (context, state) {
         var cubit = RetailerCubit.of(context);
 
+        if(state.business == null) return const SizedBox.shrink();
+
+        if (state.business!.rewardProgram == null ||
+            state.business!.rewardProgram!.id == null) {
+          return const SizedBox.shrink();
+        }
+
         return PaddingColumn(
           paddingType:
               const EdgeInsets.symmetric(horizontal: UIScales.paddingValue),
@@ -58,7 +65,7 @@ class StampsWidget extends StatelessWidget {
                 ),
               ),
               child: GridView.builder(
-                itemCount: 18,
+                itemCount: int.tryParse(state.business!.rewardProgram!.totalStamps!),
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

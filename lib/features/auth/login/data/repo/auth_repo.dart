@@ -29,4 +29,11 @@ class AuthRepo{
       data: data,
     );
   }
+
+  Future<Response> saveDeviceToken(data) async {
+    return await _dioHelper.postData(
+      url: EndPoints.deviceToken,
+      data: data,
+    );
+  }
 }

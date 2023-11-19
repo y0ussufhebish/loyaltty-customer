@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "751459613628",
+    "project_id": "loyaltty-app",
+    "storage_bucket": "loyaltty-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751459613628:android:c0c0406138b497e3b7c9b9",
+        "android_client_info": {
+          "package_name": "ai.lightring.loyalitty.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751459613628-3tqnu2o97uv619nqfg981q1ciu7f798h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeSqnonQRSqdue9O1PsUOKJnDex6YEkrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751459613628-3tqnu2o97uv619nqfg981q1ciu7f798h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -62,6 +62,9 @@ class TellMeCubit extends Cubit<TellMeState> {
         ));
         return;
       }
+      await _authRepo.saveDeviceToken({
+        'fcm_token': UserData.deviceToken,
+      });
       Navigator.pushReplacementNamed(
         NavigatorHelper.context,
         '/retailer',

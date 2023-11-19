@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:loyaltty_customer/core/data/model/business_model.dart';
 import 'package:loyaltty_customer/core/themes/colors.dart';
 import 'package:loyaltty_customer/features/main_feature/retailer/controller/retailer_cubit.dart';
 import 'package:loyaltty_customer/features/widgets/base_button.dart';
@@ -10,10 +11,12 @@ import 'package:loyaltty_customer/features/widgets/custom_text.dart';
 class DealWidget extends StatelessWidget {
   const DealWidget({
     required this.index,
+    required this.deal,
     super.key,
   });
 
   final int index;
+  final Deal deal;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +48,8 @@ class DealWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const CachedImageWidget(
-                imageUrl: 'https://picsum.photos/200/300',
+              CachedImageWidget(
+                imageUrl: deal.dealPictureUrl,
                 borderRadius: 14,
                 width: 120,
               ),
@@ -58,7 +61,7 @@ class DealWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText.bold(
-                      'Deal Widget',
+                      deal.name,
                       fontSize: 21,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -85,14 +88,14 @@ class DealWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 4,),
                     CustomText.bold(
-                      'Deal Value: \$20',
+                      'Deal Value: \$${deal.price}',
                       fontSize: 16,
                       color: AppColors.baseColor,
                     ),
                     const SizedBox(height: 4,),
                     Expanded(
                       child: CustomText.regular(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+                        deal.description,
                         fontSize: 14,
                         textAlign: TextAlign.start,
                         color: const Color(0xBA08081D),

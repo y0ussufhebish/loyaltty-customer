@@ -8,6 +8,7 @@ class EndPoints {
   static const String auth = 'auth/';
   static const String login = '$auth$customer/login';
   static const String verifyOtp = '$auth$customer/verify-otp';
+  static const String deviceToken = 'notification';
   /// [dealId] is the id of the deal
 
   /// - Used for uploading deal pictures

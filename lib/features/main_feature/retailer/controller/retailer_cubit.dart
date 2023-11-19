@@ -9,6 +9,7 @@ import 'package:loyaltty_customer/features/main_feature/retailer/data/repo/retai
 import 'package:loyaltty_customer/features/widgets/custom_snack_bar.dart';
 
 import '../../../../core/data/repo/deal_redemption_repo.dart';
+import '../../../../core/themes/colors.dart';
 
 part 'retailer_state.dart';
 
@@ -47,7 +48,9 @@ class RetailerCubit extends Cubit<RetailerState> {
         business: business,
         loading: false,
       ));
-    } catch(e){
+    } catch(e, s){
+      print('error: $e');
+      print('error: $s');
       emit(state.copyWith(
         loading: false,
       ));
@@ -56,11 +59,15 @@ class RetailerCubit extends Cubit<RetailerState> {
 
   Future<void> requestStamp() async {
     emit(state.copyWith(stampLoading: true));
-    final rewardId = state.business!.rewardProgram.id;
     try{
+      final rewardId = state.business!.rewardProgram!.id;
       final Business business = await retailerRepo.requestStamp(
         businessId,
-        rewardId,
+        rewardId!,
+      );
+      showSnackBar(
+        'Stamp requested successfully',
+        snackBarColor: AppColors.green,
       );
       emit(state.copyWith(
         business: business,
@@ -75,11 +82,11 @@ class RetailerCubit extends Cubit<RetailerState> {
 
   Future<void> redeemReward() async {
     emit(state.copyWith(redeemLoading: true));
-    final rewardId = state.business!.rewardProgram.id;
     try{
+      final rewardId = state.business!.rewardProgram!.id;
       final Business business = await retailerRepo.redeemReward(
         businessId,
-        rewardId,
+        rewardId!,
       );
       emit(state.copyWith(
         business: business,

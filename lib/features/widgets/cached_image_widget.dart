@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:loyaltty_customer/core/themes/colors.dart';
 
 class CachedImageWidget extends StatelessWidget {
   const CachedImageWidget({
@@ -32,11 +33,23 @@ class CachedImageWidget extends StatelessWidget {
           ),
         ),
       ),
-      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-        child: CircularProgressIndicator(value: downloadProgress.progress),
+      progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+        width: width,
+        height: height,
+        child: Center(
+          child: CircularProgressIndicator(value: downloadProgress.progress),
+        ),
       ),
-      errorWidget: (context, url, error) => const Center(
-        child: Icon(Icons.error),
+      errorWidget: (context, url, error) => Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius),
+          color: AppColors.baseColor.withOpacity(0.2),
+        ),
+        child: const Center(
+          child: Icon(Icons.error),
+        ),
       ),
     );
   }

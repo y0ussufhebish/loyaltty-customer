@@ -17,7 +17,7 @@ class RetailerScreen extends StatelessWidget {
       create: (context) => RetailerCubit(
         dealRepo: DealRedemptionRepo.instance,
         retailerRepo: RetailerRepo.instance,
-        businessId: '1',
+        businessId: '35',
       )..getRetailer(),
       child: const Scaffold(
         backgroundColor: AppColors.lightColor,
