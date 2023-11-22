@@ -6,6 +6,7 @@ import '../../core/helpers/navigator_helper.dart';
 void showSnackBar(
   String message, {
   Color snackBarColor = AppColors.darkGreen,
+  Color textColor = AppColors.white,
   SnackBarAction? action,
 }) {
   ScaffoldMessenger.of(NavigatorHelper.context).showSnackBar(
@@ -21,9 +22,9 @@ void showSnackBar(
       content: Text(
         message,
         textAlign: TextAlign.center,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 12.0,
-          color: Colors.white,
+          color: textColor,
           fontFamily: AppData.fontFamily,
         ),
       ),

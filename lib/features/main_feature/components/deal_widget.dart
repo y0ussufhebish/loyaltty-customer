@@ -12,11 +12,13 @@ class DealWidget extends StatelessWidget {
   const DealWidget({
     required this.index,
     required this.deal,
+    required this.stopRedeem,
     super.key,
   });
 
   final int index;
   final Deal deal;
+  final bool stopRedeem;
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +80,14 @@ class DealWidget extends StatelessWidget {
                           color: const Color(0xff08081d).withOpacity(0.73),
                         ),
                         const SizedBox(width: 4,),
-                        CustomText.regular(
-                          'Expires in 2 days',
-                          fontSize: 14,
-                          color: const Color(0xff08081d).withOpacity(0.73),
-                          height: 1.5,
+                        Expanded(
+                          child: CustomText.regular(
+                            'Expires in 2 days',
+                            fontSize: 14,
+                            color: const Color(0xff08081d).withOpacity(0.73),
+                            height: 1.5,
+                            textAlign: TextAlign.start,
+                          ),
                         ),
                       ],
                     ),
@@ -105,6 +110,7 @@ class DealWidget extends StatelessWidget {
                     BaseButton(
                       buttonText: 'Redeem',
                       width: 100,
+                      isDisabled: stopRedeem,
                       onTap: () => cubit.redeemDeal(index),
                       loading: state.dealRedeemLoading && state.dealRedeemIndex == index,
                     ),

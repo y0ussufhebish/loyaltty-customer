@@ -48,9 +48,7 @@ class RetailerCubit extends Cubit<RetailerState> {
         business: business,
         loading: false,
       ));
-    } catch(e, s){
-      print('error: $e');
-      print('error: $s');
+    } catch(e){
       emit(state.copyWith(
         loading: false,
       ));
@@ -106,6 +104,10 @@ class RetailerCubit extends Cubit<RetailerState> {
       await dealRepo.redeemSingleDeal(
         dealId,
       );
+      showSnackBar(
+        'Deal redeemed successfully',
+        snackBarColor: AppColors.green,
+      );
       emit(state.copyWith(
         dealRedeemLoading: false,
         dealRedeemIndex: -1,
@@ -115,6 +117,7 @@ class RetailerCubit extends Cubit<RetailerState> {
       if(error != null){
         showSnackBar(
           error,
+          textColor: Colors.black,
           snackBarColor: Colors.yellowAccent,
         );
       }
@@ -123,6 +126,71 @@ class RetailerCubit extends Cubit<RetailerState> {
         dealRedeemIndex: -1,
       ));
     }
+  }
+
+  Future<void> redeemMultipleDeals() async {
+    emit(state.copyWith(multipleDealRedeemLoading: true,));
+    final dealsId = state.selectedDeals;
+    try{
+      await dealRepo.redeemMultipleDeal(
+        dealsId,
+      );
+      showSnackBar(
+        'Deals redeemed successfully',
+        snackBarColor: AppColors.green,
+      );
+      emit(state.copyWith(
+        multipleDealRedeemLoading: false,
+      ));
+    } on DioException catch(e){
+      final error = e.response!.data['message'];
+      if(error != null){
+        showSnackBar(
+          error,
+          textColor: Colors.black,
+          snackBarColor: Colors.yellowAccent,
+        );
+      }
+      emit(state.copyWith(
+        dealRedeemLoading: false,
+        dealRedeemIndex: -1,
+      ));
+    }
+  }
+
+  void enableSelection() {
+    final select = !state.enableSelection;
+    emit(
+      state.copyWith(
+        enableSelection: select,
+        selectedDeals: [],
+      ),
+    );
+  }
+
+  void selectDeal(String dealId) {
+    int id = int.parse(dealId);
+    final selectedDeals = state.selectedDeals;
+    if(selectedDeals.contains(id)){
+      selectedDeals.remove(id);
+    } else {
+      selectedDeals.add(id);
+    }
+    emit(
+      state.copyWith(
+        selectedDeals: selectedDeals,
+      ),
+    );
+  }
+
+  void selectAllDeals() {
+    List<int> selectedDeals = [];
+    selectedDeals = state.business!.deals.map((e) => int.parse(e.id)).toList();
+    emit(
+      state.copyWith(
+        selectedDeals: selectedDeals,
+      ),
+    );
   }
 
   @override

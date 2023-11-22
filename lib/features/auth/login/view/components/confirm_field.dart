@@ -50,12 +50,10 @@ class ConfirmField extends StatelessWidget {
               const SizedBox(width: 8,),
               Expanded(
                 child: AnimatedCrossFade(
-                  firstChild: Expanded(
-                    child: BaseButton(
-                      buttonText: 'Confirm',
-                      loading: state.verifyLoading,
-                      onTap: cubit.verify,
-                    ),
+                  firstChild: BaseButton(
+                    buttonText: 'Confirm',
+                    loading: state.verifyLoading,
+                    onTap: cubit.verify,
                   ),
                   secondChild: const Center(
                     child: Icon(

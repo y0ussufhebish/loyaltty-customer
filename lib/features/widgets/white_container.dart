@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyaltty_customer/core/helpers/animations/animation_class.dart';
 
 import '../../core/themes/colors.dart';
 import '../../core/themes/ui_scales.dart';

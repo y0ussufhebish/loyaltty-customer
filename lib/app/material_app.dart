@@ -18,6 +18,7 @@ MaterialApp materialApp(
       title: AppData.label,
       theme: themeData,
       initialRoute: '/login',
+      themeMode: ThemeMode.light,
       routes: {
         '/login': (context) => const TellMeScreen(),
         '/retailer': (context) => const RetailerScreen(),
